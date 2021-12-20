@@ -1,4 +1,8 @@
-test for initial commit
-
-
-ss
+$ git init
+$ git config user.email "ashram7@hanmail.net"
+$ git config user.name "ashram7"
+$ git remote add origin https://github.com/ashram7/project06.git
+$ git remote -v
+$ git add .
+$ git commit -m "for initial commit"
+$ git push -u origin master
