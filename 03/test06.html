@@ -14,6 +14,7 @@
         Vue.component('child-component',{
           // 1번 : child-component의 내용에 props 속성으로 propsdata를 정의
           props: ['propsdata'],
+          // child-component의 template 속성에 정의된 <p>{{ propsdata }}</p>는 Hello Vue! passed from Parent Component가 됨
           template: '<p>{{ propsdata }}</p>',
         });
         new Vue({
