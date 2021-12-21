@@ -3,20 +3,36 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue Components Communication Quiz</title>
+    <title>Vue Router Sample</title>
   </head>
   <body>
     <div id="app">
-      <!-- 기억이 잘 안나시면 아래 형식을 참고하세요. -->
-      <!-- v-bind:프롭스 속성="상위 컴포넌트 데이터 속성" -->
-      <child-component v-bind:propsdata="message"></child-component>
-
-      <!-- #할일 3 -->
-      <!-- sibling-component 등록 -->
-      <sibling-component v-bind:propsdata="anotherMessage"></sibling-component>
+      <h1>뷰 라우터 예제</h1>
+      <p>
+        <!--1번 URL 값을 변경하는 태그 넣기-->
+        <router-link to="/main">Main 컴포넌트로 이동</router-link>
+        <router-link to="/login">Login 컴포넌트로 이동</router-link>
+      </p>
+      <!--2번 URL 값에 따라 갱신되는 화면영역을 정의-->
+      <router-view></router-view>
     </div>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
 
-    <script src="js/vendor/vue.js"></script>
-    <script src="js/app.js"></script>
+    <script>
+      //3번 Main, Login 컴포넌트 내용 정의
+      var Main = {template: '<div>main</div>'};
+      var Login = {template: '<div>login</div>'};
+      //4번 url에 해당하는 컴포넌트 등록
+      var routes = [{path: '/main', component: Main },{path: '/login', component: Login}];
+      //5번 뷰 라우터 정의
+      var router = new VueRouter({
+        routes
+      });
+      //6번 뷰 인스턴스에 라우터 추가
+      var app = new Vue({
+        router
+      }).$mount('#app');
+    </script>
   </body>
 </html>
