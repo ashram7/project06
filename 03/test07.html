@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue Sample</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 3번 : v-on:show-log의 대상 메서드인 최상위 컴포넌트의 메서드 printText() 가 실행 -->
+            <child-component  v-on:show-log="printText"></child-component>
+        </div>
+
+        <script src="../js/vue.js"></script>
+        <script>
+        Vue.component('child-component',{
+        // 1번 : [show] 버튼을 클릭하면 클릭 이벤트 v-on:click="showLog"에 따라 showLog() 메서드가 실행됨
+          template: '<button v-on:click="showLog">show</button>',
+          methods:{
+            showLog: function(){
+        // 2번 : this.$emit('show-log')가 실행되면서 show-log 이벤트가 실행(보냄)
+              this.$emit('show-log');
+            }
+          }
+        });
+        new Vue({
+            el: '#app',
+            data:{
+              message: 'Hello Vue! passed from Parent Component'
+            },
+            methods:{
+              // 4번 콘솔에 printText() 를 실행
+              printText: function(){
+                console.log('received an event');
+              }
+            }
+        });
+        </script>
+    </body>
+</html>
