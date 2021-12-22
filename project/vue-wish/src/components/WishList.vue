@@ -1,11 +1,11 @@
 <template lang="html">
   <section>
     <ul>
-      <li v-for="wishItem in wishItems" class="shadow">
+      <li v-for="(wishItem, index) in wishItems" :key="wishItem" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
         {{ wishItem }}
         <!--클릭 이벤트 추가-->
-        <span class="removeBtn" type="button" @click="removeWish">
+        <span class="removeBtn" type="button" @click="removeWish(wishItem, index)">
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         </span>
       </li>
@@ -21,8 +21,8 @@ export default {
     }
   },
   methods: {
-    removeWish() {
-      console.log('clicked');
+    removeWish(wishItem, index) {
+      console.log(wishItem, index);
     }
   },
   created() {
