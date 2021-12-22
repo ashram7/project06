@@ -4,7 +4,8 @@
       <li v-for="wishItem in wishItems" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
         {{ wishItem }}
-        <span class="removeBtn" type="button">
+        <!--클릭 이벤트 추가-->
+        <span class="removeBtn" type="button" @click="removeWish">
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         </span>
       </li>
@@ -17,6 +18,11 @@ export default {
   data() {
     return {
       wishItems: []
+    }
+  },
+  methods: {
+    removeWish() {
+      console.log('clicked');
     }
   },
   created() {
