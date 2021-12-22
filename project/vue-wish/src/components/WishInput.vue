@@ -14,8 +14,16 @@ export default {
   },
   methods:{
     addWish(){
-      //console.log(this.newWishItem);
-      localStorage.setItem(this.newWishItem, this.newWishItem);
+      if(this.newWishItem !== ""){
+        var value = this.newWishItem && this.newWishItem.trim();
+        //console.log(this.newWishItem);
+        //localStorage.setItem(this.newWishItem, this.newWishItem);
+        localStorage.setItem(value, value);
+        this.clearInput()
+      }
+    },
+    clearInput(){
+      this.newWishItem = '';
     }
   }
 }
