@@ -22,7 +22,9 @@ export default {
   },
   methods: {
     removeWish(wishItem, index) {
-      console.log(wishItem, index);
+      //console.log(wishItem, index);
+      localStorage.removeItem(wishItem);
+      this.wishItems.splice(index, 1);
     }
   },
   created() {
