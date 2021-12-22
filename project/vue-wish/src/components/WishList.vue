@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li v-for="(wishItem, index) in propsdata" :key="wishItem" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
         {{ wishItem }}
@@ -9,7 +9,7 @@
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </section>
 </template>
 
@@ -21,6 +21,9 @@ export default {
       //console.log(wishItem, index);
       //localStorage.removeItem(wishItem);
       //this.wishItems.splice(index, 1);
+      //$emit() API 형식과 안의 인자
+      //$emit('이벤트','인자1','인자2') 상위컴포넌트에 전달하기 위한 API
+      //$on('이벤트','인자1','인자2') 상위컴포넌트에 받기 위한 API
       this.$emit('removeWish', wishItem, index);
     }
   }
@@ -51,4 +54,9 @@ li{
 .removeBtn{
     margin-left: auto;
     color: #de4343;}
+.list-enter-active, .list-leave-active {
+    transition: all 1s;}
+.list-enter, .list-leave-to {
+    opacity: 0;
+    transform: translateY(30px);}    
 </style>
