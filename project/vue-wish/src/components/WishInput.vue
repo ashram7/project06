@@ -21,7 +21,8 @@ export default {
         var value = this.newWishItem && this.newWishItem.trim();
         //console.log(this.newWishItem);
         //localStorage.setItem(this.newWishItem, this.newWishItem);
-        localStorage.setItem(value, value);
+        this.$emit('addWish',value);
+        //localStorage.setItem(value, value);
         this.clearInput()
       }
     },

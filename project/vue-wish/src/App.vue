@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <WishHeader></WishHeader>
-    <WishInput></WishInput>
-    <WishList></WishList>
-    <WishFooter></WishFooter>
+    <WishInput v-on:addWish="addWish"></WishInput>
+    <WishList v-bind:propsdata="wishItems" @removeWish="removeWish"></WishList>
+    <WishFooter v-on:removeAll="clearAll"></WishFooter>
   </div>
 </template>
 
@@ -14,6 +14,33 @@ import WishList from './components/WishList.vue'
 import WishFooter from './components/WishFooter.vue'
 
 export default {
+  data() {
+    return {
+      wishItems: []
+    }
+  },
+  created() {
+    if (localStorage.length > 0) {
+      for (var i = 0; i < localStorage.length; i++) {
+        this.wishItems.push(localStorage.key(i));
+      }
+    }
+  },
+  methods: {
+    addWish(wishItem){
+      //로컬 스토리지에 데이터를 추가하는 로직을 넣을 것임
+      localStorage.setItem(wishItem, wishItem);
+      this.wishItems.push(wishItem);
+    },
+    clearAll() {
+      localStorage.clear();
+      this.wishItems = [];
+    },
+    removeWish(wishItem, index) {
+      localStorage.removeItem(wishItem);
+      this.wishItems.splice(index, 1);
+    }
+  },
   components:{
     'WishHeader': WishHeader,
     'WishInput': WishInput,

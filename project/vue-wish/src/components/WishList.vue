@@ -1,7 +1,7 @@
 <template lang="html">
   <section>
     <ul>
-      <li v-for="(wishItem, index) in wishItems" :key="wishItem" class="shadow">
+      <li v-for="(wishItem, index) in propsdata" :key="wishItem" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
         {{ wishItem }}
         <!--클릭 이벤트 추가-->
@@ -15,23 +15,13 @@
 
 <script>
 export default {
-  data() {
-    return {
-      wishItems: []
-    }
-  },
+  props: ['propsdata'],
   methods: {
     removeWish(wishItem, index) {
       //console.log(wishItem, index);
-      localStorage.removeItem(wishItem);
-      this.wishItems.splice(index, 1);
-    }
-  },
-  created() {
-    if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
-        this.wishItems.push(localStorage.key(i));
-      }
+      //localStorage.removeItem(wishItem);
+      //this.wishItems.splice(index, 1);
+      this.$emit('removeWish', wishItem, index);
     }
   }
 }
